@@ -1,8 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
-    <h2>Edit Note</h2>
-    <form action="{{ url_for('update_note', note_id=note[0]) }}" method="POST">
-        <input type="text" name="content" value="{{ note[1] }}" required>
-        <button type="submit">Update</button>
+<div class="card shadow p-4">
+    <h4>Edit Note</h4>
+    <form action="{{ url_for('update_note', note_id=note[0]) }}" method="POST" class="d-flex">
+        <input type="text" name="content" value="{{ note[1] }}" class="form-control me-2" required>
+        <button class="btn btn-success">Update</button>
     </form>
+    <a href="{{ url_for('index') }}" class="btn btn-link mt-3">⬅ Back</a>
+</div>
 {% endblock %}
