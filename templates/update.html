@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>Edit Note</h2>
+    <form action="{{ url_for('update_note', note_id=note[0]) }}" method="POST">
+        <input type="text" name="content" value="{{ note[1] }}" required>
+        <button type="submit">Update</button>
+    </form>
+{% endblock %}
