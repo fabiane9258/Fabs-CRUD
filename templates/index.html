@@ -10,37 +10,41 @@
 
 <h4 class="mb-3">All Notes</h4>
 {% if notes %}
-    <div class="list-group">
+    <div class="row">
         {% for note in notes %}
-            <div class="list-group-item d-flex justify-content-between align-items-center">
-                <span>{{ note[1] }}</span>
-                <div>
-                    <a href="{{ url_for('update_note', note_id=note[0]) }}" class="btn btn-sm btn-warning">✏️ Edit</a>
+            <div class="col-md-4 mb-3">
+                <div class="card note-card shadow-sm p-3">
+                    <div class="card-body">
+                        <p class="card-text">{{ note[1] }}</p>
+                        <div class="d-flex justify-content-between">
+                            <a href="{{ url_for('update_note', note_id=note[0]) }}" class="btn btn-sm btn-warning">✏️ Edit</a>
 
-                    <!-- Trigger Delete Modal -->
-                    <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ note[0] }}">
-                        🗑️ Delete
-                    </button>
-
-                    <!-- Delete Confirmation Modal -->
-                    <div class="modal fade" id="deleteModal{{ note[0] }}" tabindex="-1" aria-hidden="true">
-                      <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h5 class="modal-title">Confirm Delete</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                          </div>
-                          <div class="modal-body">
-                            Are you sure you want to delete this note?
-                          </div>
-                          <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                            <a href="{{ url_for('delete_note', note_id=note[0]) }}" class="btn btn-danger">Yes, Delete</a>
-                          </div>
+                            <!-- Delete Button with Modal -->
+                            <button class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal{{ note[0] }}">
+                                🗑️ Delete
+                            </button>
                         </div>
-                      </div>
                     </div>
                 </div>
+            </div>
+
+            <!-- Delete Confirmation Modal -->
+            <div class="modal fade" id="deleteModal{{ note[0] }}" tabindex="-1" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title">Confirm Delete</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                  </div>
+                  <div class="modal-body">
+                    Are you sure you want to delete this note?
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <a href="{{ url_for('delete_note', note_id=note[0]) }}" class="btn btn-danger">Yes, Delete</a>
+                  </div>
+                </div>
+              </div>
             </div>
         {% endfor %}
     </div>
